@@ -1,3 +1,29 @@
+<?php
+include("db.php");
+if (isset($_POST["submit"])) {
+   $email = $_POST["email"];
+   $contraseña = $_POST["contraseña"];
+   $result = mysqli_query($conn, "SELECT * FROM usuarios WHERE email = '$email'");
+   $row = mysqli_fetch_assoc($result);
+   if (mysqli_num_rows($result) > 0){
+      if ($contraseña == $row["contraseña"]) {
+         $_SESSION["login"] = true;
+         $_SESSION["idUsuario"] = $row["idUsuario"];
+         header("Location: index.php");
+      }else{
+         echo
+      "<script> alert('Contraseña incorrecta'); </script>";
+      }
+   }
+   else{
+      echo
+   "<script> alert('Email incorrecto'); </script>";
+   }
+
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,23 +37,23 @@
    <section>
       <div class="contenedor">
          <div class="formulario">
-            <form action="#">
+            <form action="" method="post">
                <h2>Iniciar Sesión</h2>
 
                <div class="input-contenedor">
                   <i class="fa-solid fa-envelope"></i>
-                  <input type="email" required>
-                  <label for="#">Email</label>
+                  <input type="email" name="email" id="email" required>
+                  <label for="email">Email</label>
                </div>
 
                <div class="input-contenedor">
                   <i class="fa-solid fa-lock"></i>
-                  <input type="password" required>
+                  <input type="contraseña" name="contraseña" id="contraseña" required>
                   <label for="#">Contraseña</label>
                </div>
 
                <div>
-                  <button>Acceder</button>
+                  <button type="submit" name="submit">Acceder</button>
                   <div class="registrar">
                      <p><a href="register.php">Registrarse</a></p>
                   </div>
