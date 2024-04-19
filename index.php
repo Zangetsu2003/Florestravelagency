@@ -41,7 +41,7 @@
           </div>
 
           <div class="wrapper">
-            <p class="helpline-title">Para mas informacion</p>
+            <p class="helpline-title">Para mas información</p>
 
             <p class="helpline-number">833 203 00 33</p>
           </div>
@@ -54,10 +54,16 @@
         
         <div class="header-btn-group">
 
-          <button class="search-btn" aria-label="Search">
-            Iniciar sesion
+          <button id="myButton" class="search-btn" aria-label="Search">
+            Iniciar sesión
           </button>
           
+          <script type="text/javascript">
+          document.getElementById("myButton").onclick = function () {
+          location.href = "login.php";
+          };
+          </script>
+
           <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
             <ion-icon name="menu-outline"></ion-icon>
           </button>
