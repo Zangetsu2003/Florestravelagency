@@ -51,7 +51,7 @@
         <a href="#" class="logo">
           <img src="./assets/images/logo.png" alt="Flores logo">
         </a>
-
+        
         <div class="header-btn-group">
 
           <button class="search-btn" aria-label="Search">

@@ -38,7 +38,7 @@ if (isset($_POST["submit"])) {
       <div class="contenedor">
          <div class="formulario">
             <form action="" method="post">
-               <h2>Iniciar Sesión</h2>
+               <h2>Iniciar Sesió</h2>
 
                <div class="input-contenedor">
                   <i class="fa-solid fa-envelope"></i>
