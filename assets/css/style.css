@@ -103,6 +103,8 @@ body { background: var(--white); }
 .btn-primary {
   background: var(--primary-color);
   border-color: var(--primary-color);
+  margin-top: 40px;
+  
 }
 
 .btn-primary:is(:hover, :focus) {
@@ -145,7 +147,10 @@ body { background: var(--white); }
   margin-bottom: 8px;
 }
 
-.section-title { margin-bottom: 15px; }
+.section-title { 
+  margin-bottom: 15px; 
+  margin-top:20px;
+}
 
 .section-text {
   color: var(--black-coral);
