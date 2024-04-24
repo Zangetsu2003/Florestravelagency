@@ -299,7 +299,7 @@ body { background: var(--white); }
 
 .navbar-link {
   padding: 15px 20px;
-  color: var(--jet);
+  color: black;
   font-weight: var(--fw-500);
   font-size: var(--fs-4);
   transition: var(--transition);
@@ -311,7 +311,7 @@ body { background: var(--white); }
 .overlay {
   position: fixed;
   inset: 0;
-  background: var(--black);
+  background: var(--white);
   opacity: 0;
   pointer-events: none;
   z-index: 2;
@@ -845,11 +845,12 @@ body { background: var(--white); }
   .navbar-list li { border-bottom: none; }
 
   .navbar-link {
-    color: var(--white);
+    color: var(--bright-navy-blue);
     --fs-4: 16px;
     font-weight: unset;
     text-transform: uppercase;
-    padding: 20px 15px;
+    padding: 40px 60px;
+
   }
 
   .header.active .navbar-link { color: var(--onyx); }
