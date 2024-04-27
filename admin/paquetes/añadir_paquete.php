@@ -1,14 +1,31 @@
+<?php
+include ("../../db.php");
+if (isset($_POST["añadir_paquete"])) {
+  $nombre = $_POST["nombre"];
+  $destino = $_POST["destino"];
+  $descripcion = $_POST["descripcion"];
+  $fecha = $_POST["fecha"];
+  $personas = $_POST["personas"];
+  $precio = $_POST["precio"];
+  $imagen = $_POST["imagen"];
+
+  $query = "INSERT INTO paquetes VALUES('','$nombre', '$destino', '$descripcion', '$fecha', '$personas', '$precio', '$imagen')";
+  mysqli_query($conn, $query);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/style_admin.css">
+  <link rel="stylesheet" href="../../assets/css/añadir_paquete.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/sidebar.css">
+  <link rel="stylesheet" href="../../assets/css/sidebar.css">
 
   <title>Document</title>
 </head>
@@ -19,7 +36,7 @@
   </div>
   <header class="header" data-header>
     <div class="header-top">
-      <img class="header-top image" src="../assets/images/logo.png">
+      <img class="header-top image" src="../../assets/images/logo.png">
     </div>
 
   </header>
@@ -45,7 +62,7 @@
         <ul>
           <li>
 
-            <a href="#dashboard" title="Dashboard" class="tooltip">
+            <a href="paquetes_admin.php" title="Dashboard" class="tooltip">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-package" width="44"
                 height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -140,12 +157,38 @@
         </a>
       </div>
     </nav>
-    <div class="contenido">
-      Holaaaaaa
-    </div>
+    <form action="" method="post">
+      <div class="contenido">
+        <div class="nombre"><label>Nombre</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="destino"><label>Destino</label>
+          <input type="text" id="destino" name="destino" required>
+        </div>
+        <div class="fecha"><label>Fecha</label>
+          <input type="date" id="fecha" name="fecha" required>
+        </div>
+        <div class="personas"><label>Personas</label>
+          <input type="number" id="personas" name="personas" required>
+        </div>
+        <div class="precio"><label>Precio /persona</label>
+          <input type="text" id="precio" name="precio" placeholder="$" required>
+        </div>
+        <div class="descripcion"><label>Descripción</label>
+          <textarea id="descripcion" name="descripcion" required></textarea>
+        </div>
+        <div class="imagen"><label>Imagen</label>
+          <input type="file" id="imagen" name="imagen" accept=".jpg, .jpeg, .png" value="" required>
+        </div>
+        <div class="añadir_paquete">
+          <button id="añadir_paquete" name="añadir_paquete" required>Añadir paquete</button>
+        </div>
+
+      </div>
   </div>
 
-  <script src="../assets/js/sidebar.js"></script>
+
+  <script src="../../assets/js/sidebar.js"></script>
 
 
 </body>
