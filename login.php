@@ -1,23 +1,32 @@
 <?php
-include("db.php");
+include ("db.php");
 if (isset($_POST["submit"])) {
    $email = $_POST["email"];
    $contraseña = $_POST["contraseña"];
    $result = mysqli_query($conn, "SELECT * FROM usuarios WHERE email = '$email'");
    $row = mysqli_fetch_assoc($result);
-   if (mysqli_num_rows($result) > 0){
+   if (mysqli_num_rows($result) > 0) {
       if ($contraseña == $row["contraseña"]) {
          $_SESSION["login"] = true;
-         $_SESSION["idUsuario"] = $row["idUsuario"];
-         header("Location: index.php");
-      }else{
+         $_SESSION["idusuario"] = $row["idusuario"];
+         $_SESSION['tipo_usuario'] = $row['tipo_usuario'];
+
+         switch (intval($_SESSION['tipo_usuario'])) {
+            case 1:
+               header("location:index.php");
+               break;
+            case 2:
+               header("location:admin/paquetes/paquetes_admin.php");
+               break;
+
+         }
+      } else {
          echo
-      "<script> alert('Contraseña incorrecta'); </script>";
+            "<script> alert('Contraseña incorrecta'); </script>";
       }
-   }
-   else{
+   } else {
       echo
-   "<script> alert('Email incorrecto'); </script>";
+         "<script> alert('Email incorrecto'); </script>";
    }
 
 }
@@ -26,6 +35,7 @@ if (isset($_POST["submit"])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <script src="https://kit.fontawesome.com/4f2492603f.js" crossorigin="anonymous"></script>
    <meta charset="UTF-8">
@@ -33,6 +43,7 @@ if (isset($_POST["submit"])) {
    <link rel="stylesheet" href="login.css">
    <title>Document</title>
 </head>
+
 <body>
    <section>
       <div class="contenedor">
@@ -57,12 +68,13 @@ if (isset($_POST["submit"])) {
                   <div class="registrar">
                      <p><a href="register.php">Registrarse</a></p>
                   </div>
-                  
+
                </div>
-            </div>
          </div>
-</section>
+      </div>
+   </section>
 
 
 </body>
+
 </html>

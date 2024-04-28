@@ -11,7 +11,7 @@ if (isset($_POST["submit"])){
    mysqli_query($conn, $query);
    echo
    "<script> alert('¡Registro completado correctamente!'); </script>";
-   header("login.php");
+   header("Location:login.php");
 }
 
 ?>
