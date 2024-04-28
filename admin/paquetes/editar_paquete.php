@@ -1,19 +1,54 @@
 <?php
-include ('../../db.php');
+include ("../../db.php");
+$idpaquete = '';
+$nombre = '';
+$destino = '';
+$descripcion = '';
+$fecha = '';
+$personas = '';
+$precio = '';
+$imagen = '';
+
 
 if (isset($_GET['idpaquete'])) {
     $idpaquete = $_GET['idpaquete'];
-    $query = "DELETE FROM paquetes WHERE idpaquete = '$idpaquete'"; //eliminar lo que esté almacenado en el idpaquete que me da la variable
+    $query = "SELECT * FROM paquetes";
     $result = mysqli_query($conn, $query);
-
-    if (!$result) {
-        die("Fail"); //si no existe resultado mostrar mensaje fail
+    if (mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_assoc($result);
+        $idpaquete = $row['idpaquete'];
+        $nombre = $row['nombre'];
+        $destino = $row['destino'];
+        $descripcion = $row['descripcion'];
+        $fecha = $row['fecha'];
+        $personas = $row['personas'];
+        $precio = $row['precio'];
+        $imagen = $row['imagen'];
     }
-    // si si existe mostar un mensaje y volver a la pàgina principal
-
-    $_SESSION['message'] = 'Los datos se eliminaron satisfactoriamente.';
-    $_SESSION['message_type'] = 'danger'; //color del mensaje
+    
 }
+
+if (isset($_POST['editar_paquete'])) {
+    $idpaquete = $_POST['idpaquete'];
+    $nombre = $_POST['nombre'];
+    $destino = $_POST['destino'];
+    $descripcion = $_POST['descripcion'];
+    $fecha = $_POST['fecha'];
+    $personas = $_POST['personas'];
+    $precio = $_POST['precio'];
+    $imagen = $_POST['imagen'];
+    $query = "UPDATE paquetes set idpaquete = '$idpaquete', nombre = '$nombre',  destino = '$destino', descripcion = '$descripcion', fecha= '$fecha', personas = '$personas', precio = '$precio', imagen = '$imagen' WHERE idpaquete=$idpaquete";
+    mysqli_query($conn, $query);
+    $_SESSION['message'] = 'Producto actualizado con exito';
+    $_SESSION['message_type'] = 'warning';
+    header('Location: paquetes_admin.php');
+}
+
+if (isset($_POST['salir'])) {
+
+    header('Location: paquetes_admin.php.php');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +57,7 @@ if (isset($_GET['idpaquete'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../assets/css/paquetes.css">
+    <link rel="stylesheet" href="../../assets/css/editar_paquete.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
@@ -63,7 +98,7 @@ if (isset($_GET['idpaquete'])) {
                 <ul>
                     <li>
 
-                        <a href="#dashboard" title="Dashboard" class="tooltip">
+                        <a href="paquetes_admin.php" title="Dashboard" class="tooltip">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-package"
                                 width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50"
                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -159,81 +194,34 @@ if (isset($_GET['idpaquete'])) {
                 </a>
             </div>
         </nav>
-        <div class="contenido">
-            <div>
-                <table class="content-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Destino</th>
-                            <th>Descripción</th>
-                            <th>Fecha</th>
-                            <th>Personas</th>
-                            <th>Precio</th>
-                            <th>Imagen</th>
-                            <th>Editar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <?php
-                            include ("../../db.php");
-                            $query = "SELECT * FROM paquetes";
-                            $result_usuario = mysqli_query($conn, $query);
-                            while ($row = mysqli_fetch_assoc($result_usuario)) { ?>
-                                <td><?php echo $row['idpaquete']; ?></td>
-                                <td><?php echo $row['nombre']; ?></td>
-                                <td><?php echo $row['destino']; ?></td>
-                                <td><?php echo $row['descripcion']; ?></td>
-                                <td><?php echo $row['fecha']; ?></td>
-                                <td><?php echo $row['personas']; ?></td>
-                                <td><?php echo $row['precio']; ?></td>
-                                <td><?php echo $row['imagen']; ?></td>
-                                <td>
-                                    <a href="editar_paquete.php?idpaquete=<?php echo $row['idpaquete'] ?>">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit"
-                                            width="22" height="22" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                                            <path
-                                                d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                                            <path d="M16 5l3 3" />
-                                        </svg>
-                                    </a>
-                                    <a href="delete_paquete.php?idpaquete=<?php echo $row['idpaquete'] ?>">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash"
-                                            width="22" height="22" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M4 7l16 0" />
-                                            <path d="M10 11l0 6" />
-                                            <path d="M14 11l0 6" />
-                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                        </svg>
-                                    </a>
-                                </td>
-                            </tr>
+        <form action="" method="post">
+            <div class="contenido">
+                <div class="nombre"><label>Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="destino"><label>Destino</label>
+                    <input type="text" id="destino" name="destino" required>
+                </div>
+                <div class="fecha"><label>Fecha</label>
+                    <input type="date" id="fecha" name="fecha" required>
+                </div>
+                <div class="personas"><label>Personas</label>
+                    <input type="number" id="personas" name="personas" required>
+                </div>
+                <div class="precio"><label>Precio /persona</label>
+                    <input type="text" id="precio" name="precio" placeholder="$" required>
+                </div>
+                <div class="descripcion"><label>Descripción</label>
+                    <textarea id="descripcion" name="descripcion" required></textarea>
+                </div>
+                <div class="imagen"><label>Imagen</label>
+                    <input type="file" id="imagen" name="imagen" accept=".jpg, .jpeg, .png" value="" required>
+                </div>
+                <div class="editar_paquete">
+                    <button id="editar_paquete" name="editar_paquete" required>Actualizar paquete</button>
+                </div>
 
-                        <?php } ?>
-                    </tbody>
-
-                </table>
             </div>
-            <div>
-                <button name="edit" id="edit"><a href="añadir_paquete.php"><svg xmlns="http://www.w3.org/2000/svg"
-                            class="icon icon-tabler icon-tabler-circle-plus" width="44" height="44" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
-                            <path d="M9 12h6" />
-                            <path d="M12 9v6" />
-                        </svg></button>
-            </div>
-        </div>
     </div>
 
 

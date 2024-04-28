@@ -11,6 +11,9 @@ if (isset($_POST["añadir_paquete"])) {
 
   $query = "INSERT INTO paquetes VALUES('','$nombre', '$destino', '$descripcion', '$fecha', '$personas', '$precio', '$imagen')";
   mysqli_query($conn, $query);
+  $_SESSION['message'] = 'Producto actualizado con exito';
+  $_SESSION['message_type'] = 'warning';
+  header('Location: paquetes_admin.php');
 }
 
 ?>

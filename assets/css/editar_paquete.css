@@ -1,0 +1,281 @@
+:root {
+
+    /*colors*/
+    --primary-color: #65818C;
+    --black-coral: hsl(225, 8%, 42%);
+    --gainsboro: hsl(0, 0%, 88%);
+    --white: hsl(0, 0%, 100%);
+    --black: hsl(0, 0%, 0%);
+  
+    /**
+     * typography
+     */
+  
+    --ff-poppins: "Poppins", sans-serif;
+    --ff-montserrat: "Montserrat", sans-serif;
+  
+    --fs-1: calc(20px + 3.5vw);
+    --fs-2: calc(18px + 1.6vw);
+    --fs-3: calc(16px + 0.45vw);
+    --fs-4: 15px;
+    --fs-5: 14px;
+    --fs-6: 13px;
+    --fs-7: 12px;
+    --fs-8: 11px;
+  
+    --fw-500: 500;
+    --fw-600: 600;
+    --fw-700: 700;
+    --fw-800: 800;
+  
+    /*transition*/
+  
+    --transition: 0.25s ease-in-out;
+  
+    /*spacing*/
+  
+    --section-padding: 60px;
+  
+    /**
+     * border-radius
+     */
+  
+    --radius-15: 15px;
+    --radius-25: 25px;
+  
+  }
+  
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  a,
+  img,
+  span,
+  input,
+  label,
+  button,
+  ion-icon {
+    display: block;
+  }
+  
+  input,
+  button {
+    background: none;
+    border: none;
+    font: inherit;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  input {
+    width: 100%;
+  }
+  
+  ion-icon {
+    pointer-events: none;
+  }
+  
+  html {
+    font-family: var(--ff-poppins);
+    scroll-behavior: smooth;
+    height: 100%;
+  }
+  
+  body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  
+  }
+  
+  .container {
+    margin-left: 20px;
+  }
+  
+  
+  .header {
+    width: 100%;
+    height: 80px;
+    display: block;
+    background-color: var(--primary-color);
+  
+  }
+  
+  .header-top {
+    width: 1000px;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+  
+  }
+  
+  .header-top img {
+    width: 125px;
+  }
+  
+  .forms {
+    color: black;
+    display: flex;
+    flex-grow: 1;
+  }
+  
+  .contenido {
+    margin-top: 80px;
+    display: grid;
+    grid-template-rows: 100px 100px 100px 100px 100px 100px;
+    grid-template-columns: 200px 200px 200px 200px 200px 150px 200px;
+    grid-gap: 1em;
+    font-size: 20px;
+  }
+  
+  .nombre {
+    grid-row: 1/2;
+    grid-column: 3/5;
+  
+  }
+  
+  .destino {
+    grid-row: 2/3;
+    grid-column: 3/5;
+  }
+  
+  .fecha {
+    grid-row: 1/2;
+    grid-column: 6/7;
+  }
+  
+  .personas {
+    grid-row: 2/3;
+    grid-column: 6/7;
+  }
+  
+  .precio {
+    grid-row: 3/4;
+    grid-column: 6/7;
+  }
+  
+  .descripcion {
+    grid-row: 3/7;
+    grid-column: 3/5;
+  }
+  
+  .imagen {
+    grid-row: 4/7;
+    grid-column: 6/8;
+  }
+  
+  .editar_paquete {
+    grid-row: 1/1;
+    grid-column: 8/8;
+  }
+  
+  .nombre input {
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 2px;
+  }
+  
+  .nombre input :focus {
+    border: 2px solid black;
+  }
+  
+  .destino input {
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 2px;
+  }
+  
+  .destino input :focus {
+    border: 2px solid black;
+  }
+  
+  .fecha input {
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 2px;
+  }
+  
+  .fecha input :focus {
+    border: 2px solid black;
+  }
+  
+  .personas input {
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 2px;
+  }
+  
+  .personas input :focus {
+    border: 2px solid black;
+  }
+  
+  .precio input {
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 2px;
+  }
+  
+  .precio input :focus {
+    border: 2px solid black;
+  }
+  
+  .descripcion textarea {
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 2px;
+    height: 100%;
+    width: 100%;
+    resize: none;
+  }
+  
+  .descripcion textarea :focus {
+    border: 2px solid black;
+  }
+  
+  .imagen input {
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 2px;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .imagen input :focus {
+    border: 2px solid black;
+  }
+  
+  .editar_paquete button {
+    font-weight: bold;
+    background: var(--primary-color);
+    width: 160px;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  label {
+    font-weight: bold;
+    padding-bottom: 10px;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
