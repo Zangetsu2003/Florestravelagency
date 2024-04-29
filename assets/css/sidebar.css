@@ -21,7 +21,6 @@
   padding: 1.5rem 1rem;
   user-select: none;
   max-width: 18rem;
-  min-width: 4rem;
   display: flex;
   color: var(--white);
   flex-direction: column;

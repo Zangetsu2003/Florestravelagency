@@ -137,8 +137,8 @@ body {
 
 .contenido {
     display: grid;
-    grid-template-rows: repeat(8, 100px);
-    grid-template-columns: repeat(18, 100px);
+    grid-template-rows: repeat(8, 0.5fr);
+    grid-template-columns: repeat(18, 0.5fr);
 }
 
 .añadir_usuario {
@@ -158,13 +158,14 @@ body {
 }
 
 .datos_agentes {
+    max-width: 100%;
+    display: flex;
     grid-row: 2 / 4;
-    grid-column: 2 / 9;
+    grid-column: 2 / 8;
     border: 2px solid black;
     border-radius: 10px;
     background-color: var(--primary-color);
     color: white;
-    overflow-wrap: break-word;
 }
 
 .datos_agentes p {

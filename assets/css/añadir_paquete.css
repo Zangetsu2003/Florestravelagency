@@ -44,7 +44,9 @@
   --radius-25: 25px;
 
 }
-
+*{
+  box-sizing: border-box;
+}
 *,
 *::before,
 *::after {
@@ -136,12 +138,12 @@ body {
 }
 
 .contenido {
-  margin-top: 80px;
   display: grid;
-  grid-template-rows: 100px 100px 100px 100px 100px 100px;
-  grid-template-columns: 200px 200px 200px 200px 200px 150px 200px;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
   grid-gap: 1em;
   font-size: 20px;
+  padding: 20px;
 }
 
 .nombre {
@@ -171,12 +173,12 @@ body {
 }
 
 .descripcion {
-  grid-row: 3/7;
+  grid-row: 3/6;
   grid-column: 3/5;
 }
 
 .imagen {
-  grid-row: 4/7;
+  grid-row: 4/6;
   grid-column: 6/8;
 }
 
