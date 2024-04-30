@@ -136,36 +136,39 @@ body {
 }
 
 .contenido {
-    display: grid;
-    grid-template-rows: repeat(8, 0.5fr);
-    grid-template-columns: repeat(18, 0.5fr);
+    display: flex;
+    max-width: 100%;
+    flex-grow: 1;
+    padding: 2rem;
 }
 
-.añadir_usuario {
-    grid-row: 1 / 1;
-    grid-column: 18 / 18;
-    border: 2px solid black;
-    border-radius: 20px;
-    background-color: rgb(0, 192, 0);
-    height: 60%;
-    margin-top: 25%;
+.añadir_usuario { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    gap: 5px;
+    padding: 0.5rem;
     font-weight: bold;
-    
+    max-height: 50px;
+    margin-left: auto;
+    background-color: var(--primary-color);
+    color: white;
+    transition: transform 0.3s;
 }
 
 .añadir_usuario:hover {
-    background-color: rgb(0, 173, 0);
+    transform: scale(1.1);
+    background-color: #4f646d;
 }
 
 .datos_agentes {
-    max-width: 100%;
     display: flex;
-    grid-row: 2 / 4;
-    grid-column: 2 / 8;
-    border: 2px solid black;
     border-radius: 10px;
     background-color: var(--primary-color);
     color: white;
+    max-width: 45%;
+    max-height: 30%;
 }
 
 .datos_agentes p {
