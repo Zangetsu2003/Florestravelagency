@@ -175,6 +175,9 @@ if (isset($_POST["submit"])) {
                             echo 'Teléfono: ' . $row["telefono"] . '<br>';
                             echo 'Correo electrónico: ' . $row["email"] . '<br>';
                             ?>
+                            <i style="padding:4px;" class="fa-solid fa-pen-to-square"></i>
+                            <a style="color:white;" href="delete_agente.php?idusuario=<?php echo $row['idusuario'] ?>"><i
+                                    class="fa-solid fa-trash-can"></i></a>
                         </div>
                     </div>
                 <?php endwhile; ?>
