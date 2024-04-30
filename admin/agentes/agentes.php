@@ -1,3 +1,19 @@
+<?php
+include ("../../db.php");
+if (isset($_POST["submit"])) {
+    $nombre = $_POST["nombre"];
+    $telefono = $_POST["telefono"];
+    $apellido = $_POST["apellido"];
+    $email = $_POST["email"];
+    $contraseña = $_POST["contraseña"];
+
+    $query = "INSERT INTO usuarios VALUES('','$nombre', '$telefono', '$apellido', '$email', '$contraseña', 3)";
+    mysqli_query($conn, $query);
+    header("Location: http://localhost/florestravelagency/admin/agentes/agentes.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +61,7 @@
                 <ul>
                     <li>
 
-                        <a href="#dashboard" title="Dashboard" class="tooltip">
+                        <a href="../paquetes/paquetes_admin.php" title="Dashboard" class="tooltip">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-package"
                                 width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50"
                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -96,7 +112,7 @@
                     </li>
 
                     <li>
-                        <a href="#analytics" title="Analytics" class="tooltip">
+                        <a href="agentes.html" title="Analytics" class="tooltip">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users"
                                 width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50"
                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -142,31 +158,60 @@
             </div>
         </nav>
         <div class="contenido">
-            <div class="datos_agentes">
-                
-                <div class="icono_agente">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-circle" width="100"
-                        height="100" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                        <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-                        <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
-                    </svg>
+            <div style="display:flex;width:70%; gap:15px;flex-wrap:wrap;margin-left: 356px;">
+                <?php
+                $query_agentes = "SELECT * FROM usuarios WHERE tipo_usuario=3";
+                $result_agentes = mysqli_query($conn, $query_agentes);
+                while ($row = mysqli_fetch_array($result_agentes)):
+                    ?>
+                    <div class="datos_agentes">
+                        <div class="icono_agente">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="informacion">
+                            <?php
+                            echo 'Nombre: ' . $row["nombre"] . '<br>';
+                            echo 'Apellido: ' . $row["apellido"] . '<br>';
+                            echo 'Teléfono: ' . $row["telefono"] . '<br>';
+                            echo 'Correo electrónico: ' . $row["email"] . '<br>';
+                            ?>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            </div>
 
-                </div>
-                <div>
-                    Agenteeeeaaaa aaaaaaeeeeeeee eeeeeeeeeeeeea aaaaaaaa aeeeeeeeeeeeee eeeeeeeeaaaa aaaaaa eeeeeeeeee eeeeeeeeee
-                    
+            <button class="añadir_usuario" name="añadir_usuario" id="openModalBtn"><i
+                    class="fa-solid fa-user-plus"></i>Añadir agente</button>
+
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Registro de Agente</h2>
+                    <form action="" method="POST">
+                        <label for="nombre">Nombre de Agente:</label>
+                        <input type="nombre" id="nombre" name="nombre" required>
+
+                        <label for="telefono">Teléfono:</label>
+                        <input type="telefono" id="telefono" name="telefono" required>
+
+                        <label for="apellido">Apellido:</label>
+                        <input type="apellido" id="apellido" name="apellido" required>
+
+                        <label for="email">Correo electrónico:</label>
+                        <input type="email" id="email" name="email" required>
+
+                        <label for="contraseña">Contraseña:</label>
+                        <input type="contraseña" id="contraseña" name="contraseña" required>
+
+                        <button type="submit" name="submit">Crear</button>
+                    </form>
                 </div>
             </div>
-                <button class="añadir_usuario"><i class="fa-solid fa-user-plus"></i>Añadir usuario</button>
-
-            
         </div>
     </div>
     <script src="../../assets/js/sidebar.js"></script>
     <script src="https://kit.fontawesome.com/355f6127c2.js" crossorigin="anonymous"></script>
+    <script src="../../assets/js/modal.js"></script>
 
 </body>
 

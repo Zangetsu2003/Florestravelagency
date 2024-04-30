@@ -116,7 +116,7 @@ if (isset($_POST["añadir_paquete"])) {
           </li>
 
           <li>
-            <a href="#analytics" title="Analytics" class="tooltip">
+            <a href="../agentes/agentes.php" title="Analytics" class="tooltip">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users" width="44" height="44"
                 viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
                 stroke-linejoin="round">
