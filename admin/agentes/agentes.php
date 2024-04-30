@@ -158,7 +158,7 @@ if (isset($_POST["submit"])) {
             </div>
         </nav>
         <div class="contenido">
-            <div style="display:flex;width:70%; gap:15px;flex-wrap:wrap;margin-left: 356px;">
+            <div style="display:flex;width:40%; gap:15px;flex-wrap:wrap;">
                 <?php
                 $query_agentes = "SELECT * FROM usuarios WHERE tipo_usuario=3";
                 $result_agentes = mysqli_query($conn, $query_agentes);
@@ -176,7 +176,7 @@ if (isset($_POST["submit"])) {
                             echo 'Correo electrónico: ' . $row["email"] . '<br>';
                             ?>
                             <i style="padding:4px;" class="fa-solid fa-pen-to-square"></i>
-                            <a style="color:white;" href="delete_agente.php?idusuario=<?php echo $row['idusuario'] ?>"><i
+                            <a style="color:white;" href="delete_agente.php?idUsuario=<?php echo $row['idUsuario'] ?>"><i
                                     class="fa-solid fa-trash-can"></i></a>
                         </div>
                     </div>

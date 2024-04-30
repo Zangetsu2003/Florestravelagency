@@ -1,9 +1,9 @@
 <?php
 include ('../../db.php');
 
-if (isset($_GET['idusuario'])) {
-    $idusuario = $_GET['idusuario'];
-    $query = "DELETE FROM usuarios WHERE idusuario = '$idusuario'"; //eliminar lo que esté almacenado en el idusuario que me da la variable
+if (isset($_GET['idUsuario'])) {
+    $idusuario = $_GET['idUsuario'];
+    $query = "DELETE FROM usuarios WHERE idUsuario = '$idUsuario'"; //eliminar lo que esté almacenado en el idusuario que me da la variable
     $result = mysqli_query($conn, $query);
 
     if (!$result) {

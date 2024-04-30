@@ -1,5 +1,5 @@
 <?php
-$hostname = "localhost";
+$hostname = "localhost:3307";
 $dbUser = "root";
 $dbPassword = "";
 $dbName = "florestravelagency";
