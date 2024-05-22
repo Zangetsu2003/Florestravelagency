@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include ("db.php");
 
 $idpaquete = $_GET['id'];
@@ -16,9 +17,12 @@ if (isset($_POST["submit"])){
     $fechasalida = $_POST["fechasalida"];
     $fecharegreso = $_POST["fecharegreso"];
  
-    $query = "INSERT INTO reservaciones VALUES('','$nombre', '$email', '$celular','$personas', '$fechasalida', '$fecharegreso', '$idpaquete', 1)";
+    $idusuario = $_SESSION['idusuario'];
+    $query = "INSERT INTO reservaciones VALUES('','$nombre', '$email', '$celular','$personas', '$fechasalida', '$fecharegreso', '$idpaquete', '$idusuario')";
     mysqli_query($conn, $query);
 
-    header("Location:confirmation.php");
+    $lastid = mysqli_insert_id($conn);
+
+    header("Location:confirmation.php?id=$lastid;");
  }
 ?>

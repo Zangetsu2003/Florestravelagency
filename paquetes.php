@@ -1,4 +1,5 @@
 <?php
+session_start();
 include ("db.php");
 ?>
 
@@ -57,7 +58,13 @@ include ("db.php");
         <div class="header-btn-group">
 
           <button id="myButton" class="search-btn" aria-label="Search">
-            Iniciar sesión
+          <?php if (isset($_SESSION['email'])): ?>
+          <p>Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre']); ?>!</p>
+          <a href="logout.php">Cerrar sesión</a>
+          <?php else: ?>
+          <p>Bienvenido!</p>
+          <a href="login.php">Iniciar sesión</a>
+          <?php endif; ?>
           </button>
 
           <script type="text/javascript">
@@ -74,46 +81,8 @@ include ("db.php");
 
       </div>
     </div>
-
-    <div class="header-bottom">
-      <div class="container">
-
-        <ul class="social-list">
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-twitter"></ion-icon>
-            </a>
-          </li>
-
-        </ul>
-
-        <nav class="navbar" data-navbar>
-
-          <div class="navbar-top">
-
-            <a href="#" class="logo">
-              <img src="./assets/images/logo-blue.svg" alt="Tourly logo">
-            </a>
-
-            <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
-              <ion-icon name="close-outline"></ion-icon>
-            </button>
-
-          </div>
-
-        </nav>
-
-      </div>
-    </div>
-
   </header>
+
   <main>
     <article>
       <!--#PAQUETES-->
@@ -195,7 +164,7 @@ include ("db.php");
                     <span>/ por persona</span>
                   </p>
 
-                  <button class="btn btn-secondary">Reservar Ahora</button>
+                  <a href="checkout.php?id=<?php echo $row['idpaquete']; ?>"><button class="btn btn-secondary">Reservar Ahora</button></a>
 
                 </div>
 

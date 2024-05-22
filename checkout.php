@@ -10,8 +10,7 @@ include ("checkoutcontroller.php");
     <title>Checkout</title>
     <link rel="stylesheet" href="./assets/css/checkoutstyle.css">
 </head>
-<body>
-    
+<body>    
     <div class="container">
         <div class="order-details">
             <h2>Tu reserva</h2>
